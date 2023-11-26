@@ -1,9 +1,21 @@
 import React, {useReducer} from "react";
 
+type RequestStep = "start" | "pending" | "finished" | "idle";
+
+interface State {
+  isRequestInProgress: boolean,
+  requestStep: RequestStep,
+}
+
 const initialState: State = {
   isRequestInProgress: false,
-  requestStep: 'idle',
+  requestStep: "idle",
 };
+
+
+type Action =  {
+  type: "START_REQUEST" | "PENDING_REQUEST" | "FINISH_REQUEST" | "RESET_REQUEST",
+}
 
 function requestReducer(state: State, action: Action): State {
   switch (action.type) {
